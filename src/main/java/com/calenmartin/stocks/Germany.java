@@ -2,10 +2,11 @@ package com.calenmartin.stocks;
 
 import static com.calenmartin.stocks.Util.*;
 
-import java.util.*;
-
 class Germany {
 	public static void main(String[] args) {
-		screenMorningstar(tickersIbkrCFDs("DE", 2), "xetr");
+		screenMorningstarThenClose(tickersIbkrCFDs("DE", 2), "xetr");
+//		screenMorningstar(tickersIbkrCFDs("DE", 2), "xhan");
+//		screenMorningstar(tickersIbkrCFDs("DE", 2), "xham");
+//		screenMorningstar(tickersIbkrCFDs("DE", 2), "xber");
 	}
 }

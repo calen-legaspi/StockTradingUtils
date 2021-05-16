@@ -4,6 +4,6 @@ import static com.calenmartin.stocks.Util.*;
 
 class Brazil {
 	public static void main(String[] args) {
-		screenMorningstar(tickersIbkrCFDs("BR", 1), "bvmf");
+		screenMorningstarThenClose(tickersIbkrCFDs("BR", 1), "bvmf");
 	}
 }

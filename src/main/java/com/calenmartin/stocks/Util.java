@@ -1,5 +1,6 @@
 package com.calenmartin.stocks;
 
+import java.io.*;
 import java.time.Duration;
 import java.util.*;
 
@@ -12,11 +13,17 @@ class Util {
 	/** Set the path to your chrome user-data-dir here. **/
 	private static final String CHROME_USER_DATA_DIR = "user-data-dir=/home/calen/.config/google-chrome/Profile 2";
 	private static WebDriver driver;
+	private static PrintWriter writer;
 
 	static {
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments(CHROME_USER_DATA_DIR);
 		driver = new ChromeDriver(options);
+		try {
+			writer = new PrintWriter(new FileWriter("recommendations.md"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
 	}
 
 	/**
@@ -55,7 +62,7 @@ class Util {
 					WebElement moatElement = new WebDriverWait(driver, Duration.ofSeconds(3))
 							.until(ExpectedConditions.elementToBeClickable(By.className("moat-value")));
 
-					moat = moatElement != null ? "Moat " + moatElement.getText() : "";
+					moat = moatElement != null ? ", Moat: " + moatElement.getText() : "";
 				} catch (NoSuchElementException | TimeoutException e) {
 //						e.printStackTrace();
 				}
@@ -63,14 +70,17 @@ class Util {
 				try {
 					WebElement discountElement = new WebDriverWait(driver, Duration.ofSeconds(3))
 							.until(ExpectedConditions.elementToBeClickable(
-									By.cssSelector("span[ng-if=\"analysisData.valuation.premDiscDelta\"")));
-					discount = discountElement.getText() + " discount";
+									By.className("assessment")));
+					discount = ", " + discountElement.getText();
 				} catch (NoSuchElementException | TimeoutException e) {
 //						e.printStackTrace();
 				}
 				// Only show results with rating "5 stars" or with "4 stars and wide moat"
 				if (rating.startsWith("5") || (rating.startsWith("4") && moat.equals("Wide"))) {
-					System.out.println(exchange + " " + ticker + " " + rating + " " + moat + " " + discount);
+//				if (true) {
+					String output = exchange + " " + ticker + " " + rating + " " + moat + " " + discount;
+					System.out.println(output);
+					writer.println(output);
 				}
 			} catch (NoSuchElementException e) {
 //					e.printStackTrace();

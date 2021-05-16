@@ -47,4 +47,5 @@ dependency-reduced-pom.xml
 *.iws
 *.idea
 
-README.html
+recommendations.md
+

@@ -21,7 +21,7 @@ class Util {
 		driver = new ChromeDriver(options);
 		try {
 			writer = new PrintWriter(new FileOutputStream("recommendations.md", true), true);
-			writer.println(LocalDateTime.now());
+			writer.println(LocalDateTime.now() + "    ");
 		} catch (IOException e) {
 			e.printStackTrace();
 		} 
@@ -78,7 +78,7 @@ class Util {
 				}
 				// Only show results with rating "5 stars" or with "4 stars and wide moat"
 				if (rating.startsWith("5") || (rating.startsWith("4") && moat.equals("Wide"))) {
-					String output = exchange + " " + ticker + " " + rating + " " + moat + " " + discount;
+					String output = exchange + " " + ticker + " " + rating + " " + moat + " " + discount + "    ";
 					System.out.println(output);
 					writer.println(output);
 				}

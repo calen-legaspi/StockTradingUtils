@@ -59,7 +59,7 @@ class Util {
 				String rating = starRatingElement.getAttribute("aria-label");
 				String moat = "";
 				try {
-					WebElement moatElement = new WebDriverWait(driver, Duration.ofSeconds(3))
+					WebElement moatElement = new WebDriverWait(driver, Duration.ofSeconds(5))
 							.until(ExpectedConditions.elementToBeClickable(By.className("moat-value")));
 
 					moat = moatElement != null ? ", Moat: " + moatElement.getText() : "";
@@ -77,10 +77,10 @@ class Util {
 				}
 				// Only show results with rating "5 stars" or with "4 stars and wide moat"
 				if (rating.startsWith("5") || (rating.startsWith("4") && moat.equals("Wide"))) {
-//				if (true) {
 					String output = exchange + " " + ticker + " " + rating + " " + moat + " " + discount;
 					System.out.println(output);
 					writer.println(output);
+					writer.flush();
 				}
 			} catch (NoSuchElementException e) {
 //					e.printStackTrace();
@@ -90,5 +90,7 @@ class Util {
 
 	static void close() {
 		driver.close();
+		writer.flush();
+		writer.close();
 	}
 }

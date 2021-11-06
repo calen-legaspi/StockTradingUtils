@@ -1,7 +1,7 @@
 package com.calenmartin.stocks;
 
 import java.io.*;
-import java.time.Duration;
+import java.time.*;
 import java.util.*;
 
 import org.openqa.selenium.*;
@@ -20,7 +20,8 @@ class Util {
 		options.addArguments(CHROME_USER_DATA_DIR);
 		driver = new ChromeDriver(options);
 		try {
-			writer = new PrintWriter(new FileWriter("recommendations.md"));
+			writer = new PrintWriter(new FileOutputStream("recommendations.md", true), true);
+			writer.println(LocalDateTime.now());
 		} catch (IOException e) {
 			e.printStackTrace();
 		} 
@@ -80,7 +81,6 @@ class Util {
 					String output = exchange + " " + ticker + " " + rating + " " + moat + " " + discount;
 					System.out.println(output);
 					writer.println(output);
-					writer.flush();
 				}
 			} catch (NoSuchElementException e) {
 //					e.printStackTrace();

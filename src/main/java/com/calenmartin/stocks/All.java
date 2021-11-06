@@ -10,6 +10,7 @@ class All {
 			screenMorningstar(tickersIbkrCFDs("BE", 1), "xbru");
 			screenMorningstar(tickersIbkrCFDs("BR", 1), "bvmf");
 			screenMorningstar(tickersIbkrCFDs("CZ", 1), "xpra");
+			screenMorningstar(tickersIbkrCFDs("DK", 1), "xcse");
 			screenMorningstar(tickersIbkrCFDs("FI", 1), "xhel");
 			screenMorningstar(tickersIbkrCFDs("FR", 2), "xpar");
 			screenMorningstar(tickersIbkrCFDs("DE", 2), "xetr");

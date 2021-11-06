@@ -69,7 +69,7 @@ class Util {
 				}
 				String discount = "";
 				try {
-					WebElement discountElement = new WebDriverWait(driver, Duration.ofSeconds(3))
+					WebElement discountElement = new WebDriverWait(driver, Duration.ofSeconds(5))
 							.until(ExpectedConditions.elementToBeClickable(
 									By.className("assessment")));
 					discount = ", " + discountElement.getText();

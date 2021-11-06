@@ -14,6 +14,7 @@ class Util {
 	private static final String CHROME_USER_DATA_DIR = "user-data-dir=/home/calen/.config/google-chrome/Profile 2";
 	private static WebDriver driver;
 	private static PrintWriter writer;
+    private static final Duration WAIT = Duration.ofSeconds(5);
 
 	static {
 		ChromeOptions options = new ChromeOptions();
@@ -60,7 +61,7 @@ class Util {
 				String rating = starRatingElement.getAttribute("aria-label");
 				String moat = "";
 				try {
-					WebElement moatElement = new WebDriverWait(driver, Duration.ofSeconds(5))
+					WebElement moatElement = new WebDriverWait(driver, WAIT)
 							.until(ExpectedConditions.elementToBeClickable(By.className("moat-value")));
 
 					moat = moatElement != null ? ", Moat: " + moatElement.getText() : "";
@@ -69,7 +70,7 @@ class Util {
 				}
 				String discount = "";
 				try {
-					WebElement discountElement = new WebDriverWait(driver, Duration.ofSeconds(5))
+					WebElement discountElement = new WebDriverWait(driver, WAIT)
 							.until(ExpectedConditions.elementToBeClickable(
 									By.className("assessment")));
 					discount = ", " + discountElement.getText();
